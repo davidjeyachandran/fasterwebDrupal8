@@ -1,0 +1,8 @@
+fasterweb:
+  version: 1.x
+  css:
+    theme:
+      css/fasterweb.css: {}
+  js:
+    js/faster-dev.js: {}
+    js/scripts.js: {}

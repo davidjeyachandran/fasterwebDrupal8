@@ -1,0 +1,6 @@
+name: FasterWeb
+description: Integrates with the FasterWeb web service
+package: Performance
+type: module
+version: 1.0
+core: 8.x

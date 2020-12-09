@@ -1,0 +1,5 @@
+<?php
+
+function fasterweb_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
+}

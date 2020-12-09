@@ -1,0 +1,7 @@
+fasterweb.content:
+  path: "/fasterweb"
+  defaults:
+    _controller: '\Drupal\fasterweb\Controller\HelloController::content'
+    _title: "Hello World"
+  requirements:
+    _permission: "access content"
