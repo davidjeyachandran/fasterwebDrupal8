@@ -11,11 +11,23 @@
     ga,
   });
 
+  const getDrupalSettings = function () {
+    var settingsElement = document.querySelector(
+      'head > script[type="application/json"][data-drupal-selector="drupal-settings-json"], body > script[type="application/json"][data-drupal-selector="drupal-settings-json"]'
+    );
+
+    window.drupalSettings = {};
+
+    if (settingsElement !== null) {
+      window.drupalSettings = JSON.parse(settingsElement.textContent);
+    }
+  };
+
   const websiteConfig = {
     urlInclude: [],
     urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
     doNotFetch: ["*logout*"],
-    elementSelector: "#page",
+    elementSelector: "null",
     externalScriptObject: externalScriptObject,
     url: {
       "/": {
@@ -32,7 +44,13 @@
               location: window.location.href,
             });
           }
-          if (Drupal) Drupal.attachBehaviors();
+
+          getDrupalSettings();
+          if (Drupal)
+            Drupal.attachBehaviors(
+              jQuery(document.body),
+              window.drupalSettings
+            );
         },
       },
     },
