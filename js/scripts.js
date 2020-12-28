@@ -27,7 +27,7 @@
     urlInclude: [],
     urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
     doNotFetch: ["*logout*"],
-    elementSelector: "null",
+    elementSelector: null,
     externalScriptObject: externalScriptObject,
     url: {
       "/": {
