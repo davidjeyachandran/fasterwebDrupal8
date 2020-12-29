@@ -58,9 +58,7 @@
     },
   };
 
-  // @TODO - add config so this can be run only for Anonymous users
   window.addEventListener("load", function () {
-    // console.log(websiteConfig);
     window.faster(websiteConfig);
   });
 })(jQuery, Drupal);
