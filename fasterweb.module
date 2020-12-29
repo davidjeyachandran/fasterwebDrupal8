@@ -2,4 +2,5 @@
 
 function fasterweb_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
+  $attachments['#attached']['library'][] = 'core/drupal.autocomplete';
 }

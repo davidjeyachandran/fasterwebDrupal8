@@ -8,5 +8,5 @@ fasterweb:
     js/scripts.js: {}
   dependencies:
     - core/drupal
-    - core/drupal.ajax
     - core/jquery
+    - core/drupalSettings
