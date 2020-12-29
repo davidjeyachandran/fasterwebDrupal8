@@ -1,6 +1,10 @@
 <?php
 
 function fasterweb_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
-  $attachments['#attached']['library'][] = 'core/drupal.autocomplete';
+  if (\Drupal::currentUser()->isAnonymous()) {
+    $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
+    // $attachments['#attached']['library'][] = 'core/drupal.autocomplete';
+    // $attachments['#attached']['library'][] = 'core/jquery.form';
+    // $attachments['#attached']['library'][] = 'core/drupal.ajax';
+  }
 }
