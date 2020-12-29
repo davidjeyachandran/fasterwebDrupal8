@@ -4,7 +4,7 @@ fasterweb:
     theme:
       css/fasterweb.css: {}
   js:
-    js/faster-dev.js: {}
+    //fasterweb.io/faster-dev.js: { type: external, minified: true }
     js/scripts.js: {}
   dependencies:
     - core/drupal
