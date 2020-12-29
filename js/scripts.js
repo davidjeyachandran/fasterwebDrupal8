@@ -1,14 +1,14 @@
-(function ($, Drupal, drupalSettings) {
+(function (jQuery, Drupal) {
   /* This code must NOT be in Drupal.behaviours because we call Drupal.attachBehaviors()
     that calls all Drupal.behaviours and we do not want to call recursively the code below.
   */
 
-  ga = null;
+  var googleAnalytics = window.ga || null;
 
   const externalScriptObject = new Object({
     Drupal,
     jQuery,
-    ga,
+    ga: googleAnalytics,
   });
 
   const getDrupalSettings = function () {
@@ -46,11 +46,13 @@
           }
 
           getDrupalSettings();
-          if (Drupal)
+          if (Drupal) {
+            // We pass parameters to ensure AJAX functionality works
             Drupal.attachBehaviors(
               jQuery(document.body),
               window.drupalSettings
             );
+          }
         },
       },
     },
@@ -61,4 +63,4 @@
     // console.log(websiteConfig);
     window.faster(websiteConfig);
   });
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal);
