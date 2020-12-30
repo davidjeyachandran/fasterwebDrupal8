@@ -5,3 +5,11 @@ fasterweb.content:
     _title: "Hello World"
   requirements:
     _permission: "access content"
+
+fasterweb.settings:
+  path: "/admin/config/fasterweb/settings"
+  defaults:
+    _form: '\Drupal\fasterweb\Form\FasterWebSettingsForm'
+    _title: "FasterWeb Settings"
+  requirements:
+    _permission: "administer site configuration"
