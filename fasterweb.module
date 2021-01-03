@@ -2,7 +2,7 @@
 
 function fasterweb_page_attachments(array &$attachments) {
   if (\Drupal::currentUser()->isAnonymous()) {
-    // $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
+    $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
     // $attachments['#attached']['library'][] = 'core/drupal.autocomplete';
     // $attachments['#attached']['library'][] = 'core/jquery.form';
     // $attachments['#attached']['library'][] = 'core/drupal.ajax';
@@ -11,8 +11,6 @@ function fasterweb_page_attachments(array &$attachments) {
   $config = \Drupal::config('fasterweb.settings');
 
   if ($config->get('debug_mode') === 1){
-    $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
-    print 'attach';
-    exit();
+    // $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
   }
 }
