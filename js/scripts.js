@@ -3,27 +3,23 @@
     that calls all Drupal.behaviours and we do not want to call recursively the code below.
   */
 
-  var googleAnalytics = window.ga || null;
-
-  const externalScriptObject = new Object({
+  var externalScriptObject = new Object({
     Drupal,
     jQuery,
-    ga: googleAnalytics,
   });
 
-  const getDrupalSettings = function () {
+  var getDrupalSettings = function () {
     var settingsElement = document.querySelector(
       'head > script[type="application/json"][data-drupal-selector="drupal-settings-json"], body > script[type="application/json"][data-drupal-selector="drupal-settings-json"]'
     );
 
     window.drupalSettings = {};
-
     if (settingsElement !== null) {
       window.drupalSettings = JSON.parse(settingsElement.textContent);
     }
   };
 
-  const websiteConfig = {
+  var websiteConfig = {
     urlInclude: [],
     urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
     doNotFetch: ["*logout*"],
@@ -37,14 +33,12 @@
         pageFunction: function (urlTarget, externalScriptObject) {
           console.log("All url callback: " + window.location.pathname);
 
-          const { Drupal, jQuery, ga } = externalScriptObject;
-          if (ga) {
-            ga("set", "dimension1", "faster");
-            ga("send", "pageview", urlTarget, {
-              location: window.location.href,
-            });
+          if (window.ga) {
+            window.ga("set", "dimension1", "faster");
+            window.ga("send", "pageview", urlTarget);
           }
 
+          var Drupal = externalScriptObject.Drupal;
           getDrupalSettings();
           if (Drupal) {
             // We pass parameters to ensure AJAX functionality works
