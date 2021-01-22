@@ -20,6 +20,7 @@
   };
 
   var websiteConfig = {
+    debug: true,
     urlInclude: [],
     urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
     doNotFetch: ["*logout*"],
