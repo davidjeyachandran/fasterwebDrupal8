@@ -31,7 +31,13 @@
       },
       all: {
         pageFunction: function (urlTarget, externalScriptObject) {
-          console.log("All url callback: " + window.location.pathname);
+          // demo - example with (non-standard) Superfish menu
+          // var jQuery = externalScriptObject.jQuery;
+          // jQuery("ul.sf-menu").superfish({
+          //   autoArrows: false,
+          //   dropShadows: false,
+          //   speed: "fast",
+          // });
 
           if (window.ga) {
             window.ga("set", "dimension1", "faster");
