@@ -1,6 +1,7 @@
 name: FasterWeb
 description: Integrates with the FasterWeb web service
-package: Performance
+package: Performance and Scalability
 type: module
 version: 0.1
 core: 8.x
+configure: fasterweb.settings

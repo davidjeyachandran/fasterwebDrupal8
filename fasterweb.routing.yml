@@ -1,5 +1,5 @@
 fasterweb.settings:
-  path: "/admin/config/fasterweb/settings"
+  path: "admin/config/development/performance/fasterweb"
   defaults:
     _form: '\Drupal\fasterweb\Form\FasterWebSettingsForm'
     _title: "FasterWeb Settings"
