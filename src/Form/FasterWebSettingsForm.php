@@ -49,7 +49,6 @@ class FasterWebSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Debug Mode'),
       '#description' => t('Print messages to console so you can see what FasterWeb is doing.'),
       '#default_value' => $config->get('debug_mode'),
-      '#attributes' => array('checked' => 'checked'),
     ];  
 
     return parent::buildForm($form, $form_state);
