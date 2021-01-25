@@ -18,12 +18,14 @@
       window.drupalSettings = JSON.parse(settingsElement.textContent);
     }
   };
+  getDrupalSettings();
+  var debug = window.drupalSettings.fasterweb.debug ? true : false;
 
   var websiteConfig = {
-    debug: true,
+    debug: debug,
     urlInclude: [],
     urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
-    doNotFetch: ["*logout*"],
+    urlDoNotFetch: ["*logout*"],
     elementSelector: null,
     externalScriptObject: externalScriptObject,
     url: {
@@ -46,13 +48,10 @@
           }
 
           var Drupal = externalScriptObject.Drupal;
-          getDrupalSettings();
+          console.log(Drupal, window.drupalSettings);
           if (Drupal) {
             // We pass parameters to ensure AJAX functionality works
-            Drupal.attachBehaviors(
-              jQuery(document.body),
-              window.drupalSettings
-            );
+            Drupal.attachBehaviors(jQuery(document.body), window.drupalSettings);
           }
         },
       },
