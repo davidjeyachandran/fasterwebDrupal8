@@ -1,64 +1,43 @@
-(function (jQuery, Drupal) {
-  /* This code must NOT be in Drupal.behaviours because we call Drupal.attachBehaviors()
-    that calls all Drupal.behaviours and we do not want to call recursively the code below.
-  */
+(function ($, Drupal) {
+  Drupal.behaviors.fasterweb = {
+    attach: function (context, settings) {
+      // Ensure that we run this code only once
+      if (!settings.fasterweb.isRunAlready) {
+        settings.fasterweb.isRunAlready = true;
 
-  var externalScriptObject = new Object({
-    Drupal,
-    jQuery,
-  });
+        var externalScriptObject = new Object({
+          Drupal,
+          jQuery,
+        });
 
-  var getDrupalSettings = function () {
-    var settingsElement = document.querySelector(
-      'head > script[type="application/json"][data-drupal-selector="drupal-settings-json"], body > script[type="application/json"][data-drupal-selector="drupal-settings-json"]'
-    );
+        var websiteConfig = {
+          debug: settings.fasterweb.debug,
+          urlInclude: [],
+          urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
+          urlDoNotFetch: ["*logout*", "*/node/*/edit", "*/node/add"],
+          elementSelector: null,
+          externalScriptObject: externalScriptObject,
+          url: {
+            "/": {
+              pageFunction: function (urlTarget, externalScriptObject) {},
+            },
+            all: {
+              pageFunction: function (urlTarget, externalScriptObject) {
+                if (window.ga) {
+                  window.ga("set", "dimension1", "faster");
+                  window.ga("send", "pageview", urlTarget);
+                }
 
-    window.drupalSettings = {};
-    if (settingsElement !== null) {
-      window.drupalSettings = JSON.parse(settingsElement.textContent);
-    }
-  };
-  getDrupalSettings();
-  var debug = window.drupalSettings.fasterweb.debug ? true : false;
+                if (Drupal) Drupal.attachBehaviors();
+              },
+            },
+          },
+        };
 
-  var websiteConfig = {
-    debug: debug,
-    urlInclude: [],
-    urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
-    urlDoNotFetch: ["*logout*"],
-    elementSelector: null,
-    externalScriptObject: externalScriptObject,
-    url: {
-      "/": {
-        pageFunction: function (urlTarget, externalScriptObject) {},
-      },
-      all: {
-        pageFunction: function (urlTarget, externalScriptObject) {
-          // demo - example with (non-standard) Superfish menu
-          // var jQuery = externalScriptObject.jQuery;
-          // jQuery("ul.sf-menu").superfish({
-          //   autoArrows: false,
-          //   dropShadows: false,
-          //   speed: "fast",
-          // });
-
-          if (window.ga) {
-            window.ga("set", "dimension1", "faster");
-            window.ga("send", "pageview", urlTarget);
-          }
-
-          var Drupal = externalScriptObject.Drupal;
-          console.log(Drupal, window.drupalSettings);
-          if (Drupal) {
-            // We pass parameters to ensure AJAX functionality works
-            Drupal.attachBehaviors(jQuery(document.body), window.drupalSettings);
-          }
-        },
-      },
+        window.addEventListener("load", function () {
+          window.faster(websiteConfig);
+        });
+      }
     },
   };
-
-  window.addEventListener("load", function () {
-    window.faster(websiteConfig);
-  });
 })(jQuery, Drupal);

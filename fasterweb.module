@@ -9,8 +9,8 @@ function fasterweb_page_attachments(array &$attachments) {
   }
 
   $config = \Drupal::config('fasterweb.settings');
-
-  if ($config->get('debug_mode') === 1){
+  
+  if ($config->get('debug_mode')){
     $attachments['#attached']['drupalSettings']['fasterweb']['debug'] = true;
   } else {
     $attachments['#attached']['drupalSettings']['fasterweb']['debug'] = false;
