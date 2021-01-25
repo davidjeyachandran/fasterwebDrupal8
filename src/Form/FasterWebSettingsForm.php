@@ -39,10 +39,17 @@ class FasterWebSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config(static::SETTINGS);
 
+    $form['description'] = [
+      '#type' => 'item',
+      '#markup' => $this->t('Welcome to the FasterWeb configuration.'),
+    ];
+
     $form['debug_mode'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Debug Mode'),
+      '#description' => t('Print messages to console so you can see what FasterWeb is doing.'),
       '#default_value' => $config->get('debug_mode'),
+      '#attributes' => array('checked' => 'checked'),
     ];  
 
     return parent::buildForm($form, $form_state);
