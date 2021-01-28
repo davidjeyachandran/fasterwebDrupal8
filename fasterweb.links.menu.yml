@@ -1,0 +1,6 @@
+fasterweb.settings:
+  title: 'FasterWeb Settings'
+  parent: system.performance_settings
+  description: 'Configure Fasterweb Settings'
+  route_name: fasterweb.settings
+  weight: -10
