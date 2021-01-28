@@ -1,8 +1,13 @@
 # FasterWeb Drupal 8 module
 
-We believe that **anyone**, **anywhere** with **any device** should be able to access the information and the services that they need... **instantly**.
+We believe that **anyone**, **anywhere** with **any device** should be able to access the information that they need... **instantly**.
 
-When someone uses your website, their experience depends on where they are, their bandwidth and their device. With this module, someone living far from the server, on a 512Kb Internet connection and using an old phone will still get an amazing user experience - sub second page loads on most links. The module does not change the first page load on your site - it accelerates subsequent clicks of links in your site.
+Enable the FasterWeb module and your website users will experience webpages that open instantly, after the first page load.
+
+## How to test it
+
+Download and enable the FasterWeb module. Open your website in a Incognito browser window. Click around your site and the FasterWeb service learns. Notice that there is no page load - your Drupal site works like a SPA. In less than a minute the FasterWeb service begins predicting where you will click and these links open instantly.
+Here's a 40 second video - how to install and test FasterWeb -> https://www.youtube.com/watch?v=6jrDlAFMonY
 
 ## How it works?
 
@@ -11,9 +16,7 @@ On page load:
 - We intelligently prefech the pages the user is most likely to click on
 - We load these pages using AJAX and store the HTML in memory
 
-When the user clicks on a link, if we have the HTML:
-
-- we apply this HTML (using a DOM tree diff between the current page HTML and the target page HTML)
+When the user clicks on a link, if we have the HTML we apply this HTML (using a DOM tree diff between the current page HTML and the target page HTML)
 
 It works based because we know that:
 
@@ -39,8 +42,7 @@ The FasterWeb module connects to an external FasterWeb service. Analytics for ev
 
 ## Cost
 
-- free for personal sites
-- low cost for not-for-profits
+At some point in the future I would like to charge a monthly fee for the FasterWeb backend service while keeping it free for personal and Drupal Community sites. Now there is no cost and it will be free forever for those who use it now - assuming fair usage.
 
 ## Components of the solution
 
@@ -50,7 +52,7 @@ The FasterWeb module connects to an external FasterWeb service. Analytics for ev
 
 ## Why try FasterWeb?
 
-- Most bang for your buck and your time. Nothing else will help get your users sub-second page loads, anywhere and on any device.
+- You can turn on web performance. Enable the module and
 - FasterWeb complements other web performance tools/services - Drupal caching, CDNs, image and other front-end optimizations
 
 # fasterwebDrupal8
