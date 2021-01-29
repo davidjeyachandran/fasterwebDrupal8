@@ -1,0 +1,4 @@
+fasterweb.settings:
+  title: 'FasterWeb Settings'
+  route_name: fasterweb.settings
+  base_route: system.performance_settings
