@@ -37,11 +37,14 @@ class FasterWebSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form = parent::buildForm($form, $form_state);
     $config = $this->config(static::SETTINGS);
 
     $form['description'] = [
       '#type' => 'item',
-      '#markup' => $this->t('Welcome to the FasterWeb configuration.'),
+      '#markup' => $this->t('Welcome to the FasterWeb configuration. 
+      To test FasterWeb open in an incognito browser window because it only 
+      enabled for anonymous (non logged-in) users'),
     ];
 
     $form['debug_mode'] = [
@@ -65,6 +68,10 @@ class FasterWebSettingsForm extends ConfigFormBase {
       ->save();
 
     parent::submitForm($form, $form_state);
+
+    drupal_flush_all_caches();
+    drupal_set_message(t('Caches have also been flushed so changes take effect immediately.'), 'status');
+
   }
 
 }
