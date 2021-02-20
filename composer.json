@@ -1,0 +1,19 @@
+{
+  "name": "drupal/fasterweb",
+  "description": "Turn on web performance. Turn your Drupal site into an SPA. Connects to the FasterWeb service",
+  "type": "drupal-module",
+  "keywords": ["Performance and Scalability"],
+  "homepage": "http://drupal.org/project/fasterweb",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "David Jeyachandran (davidjeyachandran)",
+      "homepage": "https://www.drupal.org/u/david-jeyachandran",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/fasterweb",
+    "source": "https://git.drupal.org/project/fasterweb.git"
+  }
+}
