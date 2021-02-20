@@ -12,7 +12,7 @@
 
         var websiteConfig = {
           debug: settings.fasterweb.debug,
-          type: 'Drupal 8',
+          type: "Drupal 8",
           urlInclude: [],
           urlExclude: ["*logout*", "/admin_menu*", "*admin/*"],
           urlDoNotFetch: ["*logout*", "*/node/*/edit", "*/node/add"],
@@ -23,7 +23,7 @@
             },
             all: {
               pageFunction: function (urlTarget, externalScriptObject) {
-                if (window.ga) window.ga("send", "pageview", urlTarget);
+                // if (window.ga) window.ga("send", "pageview", urlTarget);
                 if (Drupal) Drupal.attachBehaviors();
               },
             },
@@ -31,7 +31,7 @@
         };
 
         window.addEventListener("load", function () {
-          window.faster(websiteConfig);
+          window.faster.init(websiteConfig);
         });
       }
     },
