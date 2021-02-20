@@ -30,9 +30,7 @@
           },
         };
 
-        window.addEventListener("load", function () {
-          window.faster.init(websiteConfig);
-        });
+        window.faster.init(websiteConfig);
       }
     },
   };
