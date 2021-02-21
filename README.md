@@ -1,13 +1,18 @@
 # FasterWeb Drupal 8 module
 
-We believe that **anyone**, **anywhere** with **any device** should be able to access the information that they need... **instantly**.
+Turn on web performance. Turn your Drupal site into an SPA (Single Page Application).
+
+> We believe that **anyone**, **anywhere** with **any device** should be able to access the information that they need... **instantly**.
 
 Enable the FasterWeb module and your website users will experience webpages that open instantly, after the first page load.
 
-## How to test it
+## How to use it
 
-Download and enable the FasterWeb module. Open your website in a Incognito browser window. Click around your site and the FasterWeb service learns. Notice that there is no page load - your Drupal site works like a SPA. In less than a minute the FasterWeb service begins predicting where you will click and these links open instantly.
-Here's a 40 second video - how to install and test FasterWeb -> https://www.youtube.com/watch?v=6jrDlAFMonY
+- `composer require drupal/fasterweb`
+- Enable the FasterWeb module
+- Open the website in Incognito mode (as an anonymous user)
+
+Initially as you click links, the page load will be slow, as FasterWeb learns how you use the website. In less than a minute, you'll notice that links open instantly. Use the Chrome Inspector console to see which links are prefetched.
 
 ## How it works?
 
