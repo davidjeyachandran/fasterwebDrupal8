@@ -68,10 +68,6 @@ class FasterWebSettingsForm extends ConfigFormBase {
       ->save();
 
     parent::submitForm($form, $form_state);
-
-    drupal_flush_all_caches();
-    drupal_set_message(t('Caches have also been flushed so changes take effect immediately.'), 'status');
-
   }
 
 }
