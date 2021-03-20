@@ -8,6 +8,13 @@ function fasterweb_page_attachments(array &$attachments) {
     // $attachments['#attached']['library'][] = 'core/drupal.ajax';
   }
 
+
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function fasterweb_preprocess_html(&$variables, $hook) {
   $config = \Drupal::config('fasterweb.settings');
   
   if ($config->get('debug_mode')){
@@ -15,4 +22,34 @@ function fasterweb_page_attachments(array &$attachments) {
   } else {
     $attachments['#attached']['drupalSettings']['fasterweb']['debug'] = false;
   }
+
+  $urls_exclude = array("*logout*", "/admin_menu*", "*admin/*");
+  // convert field value into array
+  foreach (explode(PHP_EOL, $config->get('urls_exclude')) as $value) {
+    if (!empty($value)) {
+      $urls_exclude[] = $value;
+    }
+  }
+
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_exclude'] = $urls_exclude;
+
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_include'] = 
+    _create_array($config->get('urls_include'));
+  
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_do_not_prefetch'] = 
+    _create_array($config->get('urls_do_not_prefetch'));
+
+}
+
+function _create_array( $field_value, $default_values = []) {
+  $return_array = $default_values;
+  
+  // convert field value into array
+  foreach (explode(PHP_EOL, $field_value) as $value) {
+    if (!empty($value)) {
+      $return_array[] = $value;
+    }
+  }
+
+  return $return_array;
 }
