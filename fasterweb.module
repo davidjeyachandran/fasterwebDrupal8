@@ -7,8 +7,6 @@ function fasterweb_page_attachments(array &$attachments) {
     // $attachments['#attached']['library'][] = 'core/jquery.form';
     // $attachments['#attached']['library'][] = 'core/drupal.ajax';
   }
-
-
 }
 
 /**
@@ -17,27 +15,17 @@ function fasterweb_page_attachments(array &$attachments) {
 function fasterweb_preprocess_html(&$variables, $hook) {
   $config = \Drupal::config('fasterweb.settings');
   
-  if ($config->get('debug_mode')){
-    $attachments['#attached']['drupalSettings']['fasterweb']['debug'] = true;
-  } else {
-    $attachments['#attached']['drupalSettings']['fasterweb']['debug'] = false;
-  }
+  $debug_mode = $config->get('debug_mode') == false ? false : true;
+  $variables['#attached']['drupalSettings']['fasterweb']['debug'] = $debug_mode;
 
-  $urls_exclude = array("*logout*", "/admin_menu*", "*admin/*");
-  // convert field value into array
-  foreach (explode(PHP_EOL, $config->get('urls_exclude')) as $value) {
-    if (!empty($value)) {
-      $urls_exclude[] = $value;
-    }
-  }
-
-  $variables['#attached']['drupalSettings']['fasterweb']['urls_exclude'] = $urls_exclude;
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_exclude'] = 
+    _create_array($config->get('urls_exclude'), array("*logout*", "/admin_menu*", "*admin/*"));
 
   $variables['#attached']['drupalSettings']['fasterweb']['urls_include'] = 
     _create_array($config->get('urls_include'));
   
   $variables['#attached']['drupalSettings']['fasterweb']['urls_do_not_prefetch'] = 
-    _create_array($config->get('urls_do_not_prefetch'));
+    _create_array($config->get('urls_do_not_prefetch'), array("*logout*", "*/node/*/edit", "*/node/add*"));
 
 }
 

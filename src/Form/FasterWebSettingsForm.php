@@ -42,7 +42,7 @@ class FasterWebSettingsForm extends ConfigFormBase {
 
     $form['description'] = [
       '#type' => 'item',
-      '#markup' => $this->t('Welcome to the FasterWeb configuration. 
+      '#markup' => $this->t('Welcome to the FasterWeb settings. 
       To test FasterWeb open in an incognito browser window because it only 
       enabled for anonymous (non logged-in) users'),
     ];
