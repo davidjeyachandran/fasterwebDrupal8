@@ -4,18 +4,12 @@
  * @file
  * Drupal Module: FasterWeb.
  *
- * Adds the required Javascript to all your Drupal pages to allow tracking by
- * the Google Analytics statistics package.
- *
  * @author: David Jeyachandran <https://www.drupal.org/u/david-jeyachandran>
  */
 
 function fasterweb_page_attachments(array &$attachments) {
   if (\Drupal::currentUser()->isAnonymous()) {
     $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
-    // $attachments['#attached']['library'][] = 'core/drupal.autocomplete';
-    // $attachments['#attached']['library'][] = 'core/jquery.form';
-    // $attachments['#attached']['library'][] = 'core/drupal.ajax';
   }
 }
 
