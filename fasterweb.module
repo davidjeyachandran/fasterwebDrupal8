@@ -7,6 +7,9 @@
  * @author: David Jeyachandran <https://www.drupal.org/u/david-jeyachandran>
  */
 
+/**
+ * Implements hook_page_attachments().
+ */
 function fasterweb_page_attachments(array &$attachments) {
   if (\Drupal::currentUser()->isAnonymous()) {
     $attachments['#attached']['library'][] = 'fasterweb/fasterweb';
@@ -18,25 +21,34 @@ function fasterweb_page_attachments(array &$attachments) {
  */
 function fasterweb_preprocess_html(&$variables, $hook) {
   $config = \Drupal::config('fasterweb.settings');
-  
-  $debug_mode = $config->get('debug_mode') == false ? false : true;
+
+  // @todo check what's returned by get()
+  $debug_mode = !$config->get('debug_mode') ? FALSE : TRUE;
   $variables['#attached']['drupalSettings']['fasterweb']['debug'] = $debug_mode;
 
-  $variables['#attached']['drupalSettings']['fasterweb']['urls_exclude'] = 
-    _create_array($config->get('urls_exclude'), array("*logout*", "/admin_menu*", "*admin/*"));
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_exclude'] =
+    _create_array(
+      $config->get('urls_exclude'),
+      ["*logout*", "/admin_menu*", "*admin/*"]
+    );
 
-  $variables['#attached']['drupalSettings']['fasterweb']['urls_include'] = 
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_include'] =
     _create_array($config->get('urls_include'));
-  
-  $variables['#attached']['drupalSettings']['fasterweb']['urls_do_not_prefetch'] = 
-    _create_array($config->get('urls_do_not_prefetch'), array("*logout*", "*/node/*/edit", "*/node/add*"));
 
+  $variables['#attached']['drupalSettings']['fasterweb']['urls_do_not_prefetch'] =
+    _create_array($config->get(
+      'urls_do_not_prefetch'),
+      ["*logout*", "*/node/*/edit", "*/node/add*"]
+    );
 }
 
-function _create_array( $field_value, $default_values = []) {
+/**
+ * Creates an array combining two arrays - default values and the field values.
+ */
+function _create_array($field_value, $default_values = []) {
   $return_array = $default_values;
-  
-  // convert field value into array
+
+  // Convert field value into array.
   foreach (explode(PHP_EOL, $field_value) as $value) {
     if (!empty($value)) {
       $return_array[] = $value;

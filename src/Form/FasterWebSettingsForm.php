@@ -10,21 +10,21 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class FasterWebSettingsForm extends ConfigFormBase {
 
-  /** 
+  /**
    * Config settings.
    *
    * @var string
    */
   const SETTINGS = 'fasterweb.settings';
 
-  /** 
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
     return 'fasterweb_admin_settings';
   }
 
-  /** 
+  /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
@@ -33,7 +33,7 @@ class FasterWebSettingsForm extends ConfigFormBase {
     ];
   }
 
-  /** 
+  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
@@ -99,11 +99,10 @@ class FasterWebSettingsForm extends ConfigFormBase {
       ],
     ];
 
-    
     return parent::buildForm($form, $form_state);
   }
 
-  /** 
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
