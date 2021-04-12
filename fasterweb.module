@@ -50,8 +50,8 @@ function _create_array($field_value, $default_values = []) {
 
   // Convert field value into array.
   foreach (explode(PHP_EOL, $field_value) as $value) {
-    if (!empty($value)) {
-      $return_array[] = $value;
+    if (!empty($value) and trim($value) != "") {
+      $return_array[] = trim($value);
     }
   }
 
